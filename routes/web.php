@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Backoffice\AdminController;
-
+use App\Http\Controllers\QueryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,6 +14,11 @@ Route::get('/', function () {
 Route::get('books',[BookController::class, 'index'])->name('web.books.index');
 Route::get('books/{id}', [BookController::class, 'show']) -> name('web.books.show');
 
+// Queries
+Route::get('where-complejo', [QueryController::class, 'whereComplejo']);
+// Route::get('where-simple', [QueryController::class, 'whereSimple']);
+
+
 
 // BACKOFFICE
 
@@ -22,4 +27,6 @@ Route::get('dashboard/create', [AdminController::class, 'create']);
 Route::post('dashboard', [AdminController::class, 'store']);
 Route::get('dashboard/{id}/edit', [AdminController::class, 'edit']);
 Route::post('dashboard/{id}', [AdminController::class, 'update']);
+
+
 

@@ -35,7 +35,7 @@ class AdminController extends Controller
 
         return redirect('dashboard');
     }
-
+    
     public function edit($id) {
 
         $book = Book::find($id);

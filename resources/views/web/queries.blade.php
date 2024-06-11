@@ -41,17 +41,14 @@
         <div class="container">
             <h3 class="container my-3" id="titulo">Listado de Libros</h3>
 
-        
-
-            <form class="container form-inline" style="max-width: 400px;" action="where-complejo" method="GET">
-                <select class="form-control mr-sm-2" name='filter'>
-                    <option value="">Seleccionar</option>
-                    <option value="opcion1">Titulo</option>
-                    <option value="opcion2">Año</option>
-                    <option value="opcion3">Autor</option>
-                    <option value="opcion3">Genero</option>
+            <form class="container form-inline" style="max-width: 300px;">
+                <select class="form-control mr-sm-2">
+                    <option value="">Filtrar por</option>
+                    <option value="opcion1">Opción 1</option>
+                    <option value="opcion2">Opción 2</option>
+                    <option value="opcion3">Opción 3</option>
                 </select>
-                <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search" name='search'>
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
             
@@ -70,13 +67,7 @@
                     </tr>
                 </thead>
   
-                <tbody>                       
-                   @if ($noResult)
-                       <tr>
-                            <td colspan="7">No hay resultados</td>
-                        </tr>    
-                   
-                   @else                        
+                <tbody>
                     @foreach ($books as $book)
                     <tr>          
                         <td><a href=" /books/{{ $book->id }} "> {{ $book->title }}</a></td>
@@ -90,7 +81,6 @@
 
                     </tr>
                         @endforeach
-                    @endif
   
                 </tbody>
             </table>

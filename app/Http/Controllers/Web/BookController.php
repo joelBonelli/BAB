@@ -23,6 +23,8 @@ class BookController extends Controller
         return view('web.books.show', compact('book'));
     }
 
+   
+
 
 
 
