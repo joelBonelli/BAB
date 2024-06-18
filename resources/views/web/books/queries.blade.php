@@ -39,18 +39,23 @@
     <main class="flex-shrink-0">
 
         <div class="container">
-            <h3 class="container my-3" id="titulo">Listado de Libros</h3>
-
-            <form class="container form-inline" style="max-width: 300px;">
-                <select class="form-control mr-sm-2">
-                    <option value="">Filtrar por</option>
-                    <option value="opcion1">Opción 1</option>
-                    <option value="opcion2">Opción 2</option>
-                    <option value="opcion3">Opción 3</option>
-                </select>
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
+            @foreach($genres as $genre)
+            <h3 class="container my-3" id="titulo">Listado de Libros: Genero {{ $genre->value }}</h3>
+            @endforeach
+        
+            {{-- <form class="container form-inline" style="max-width: 400px;" action="{{route('web.books.queries')}}" method="GET">
+                <select class="form-control mr-sm-2" name='filter'>
+                    <option value="">Categorias</option>
+                    @foreach($genres as $genre)
+                    <option value="{{ $genre->id}}">{{ $genre->value }}</option>
+                    @endforeach
+                    {{-- <option value="opcion2">Año</option>
+                    <option value="opcion3">Autor</option>
+                    <option value="opcion3">Genero</option> --}}
+                {{-- </select> --}}
+                {{-- <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search" name='search'> --}}
+                {{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button> --}}
+            {{-- </form> --}} 
             
             
             <table class="table table-hover table-bordered my-3" aria-describedby="titulo">
@@ -67,7 +72,13 @@
                     </tr>
                 </thead>
   
-                <tbody>
+                <tbody>                       
+                   {{-- @if ($noResult)
+                       <tr>
+                            <td colspan="7">No hay resultados</td>
+                        </tr>    
+                   
+                   @else                         --}}
                     @foreach ($books as $book)
                     <tr>          
                         <td><a href=" /books/{{ $book->id }} "> {{ $book->title }}</a></td>
@@ -81,9 +92,13 @@
 
                     </tr>
                         @endforeach
+                    {{-- @endif --}}
   
                 </tbody>
             </table>
+        </div>
+        <div class=" text-center mt-4">
+            <a href="{{ route('web.books.index') }}" class="btn btn-primary">Volver al listado</a>
         </div>
     </main>
 

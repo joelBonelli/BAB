@@ -13,15 +13,14 @@
     <main class="flex-shrink-0">
 
         <div class="container">
-            <h3 class="container my-3" id="titulo">Listado de Libros</h3>
-
-            <p>
-                <p>
-                    @foreach($genres as $genre)
-                        <a href="/genres/{{ $genre->id }}">{{ $genre->value }}</a>@if (!$loop->last) || @endif
-                    @endforeach
-                </p>
-            </p>
+            {{-- @if($noResult)
+            <h2>Seleccione una categoria</h2>
+            @else
+            @foreach($genres as $genre)
+            <h3 class="container my-3" id="titulo">Listado de Libros: Genero {{ $genre->value }}</h3>
+            @endforeach
+            @endif --}}
+           
             
             <table class="table table-hover table-bordered my-3" aria-describedby="titulo">
                 <thead class="table-dark">
@@ -33,12 +32,10 @@
                         <th scope="col">Año</th>
                         <th scope="col">Genero</th>
                         <th scope="col">Portada</th>
-
                     </tr>
                 </thead>
   
                 <tbody>                       
-                                         
                     @foreach ($books as $book)
                     <tr>          
                         <td><a href=" /books/{{ $book->id }} "> {{ $book->title }}</a></td>
@@ -48,14 +45,15 @@
                         <td>{{ $book->released_date }}</td> 
                         <td>{{ $book->genre_id }}</td>
                         <td><img src="{{ $book->image }}" alt="Portada del libro" class="img-thumbnail" style="max-width: 80px;"></td>
-
-
                     </tr>
                         @endforeach
-                    
+                   
   
                 </tbody>
             </table>
+        </div>
+        <div class=" text-center mt-4">
+            <a href="{{ route('web.books.index') }}" class="btn btn-primary">Volver al listado</a>
         </div>
     </main>
 

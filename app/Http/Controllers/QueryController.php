@@ -2,23 +2,32 @@
 
 namespace App\Http\Controllers;
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class QueryController extends Controller
 {
-    public function whereComplejo(){
+    // public function queriesFilter($id){
 
-        $filter = request()->input('filter');
-        $search = request()->input('search');
-        $noResult = false;
+    //         $books = Book::where('genre_id','=', $id)->get();
+    //         return view('web.books.genres', compact('books'));
+    // }
+}
+
+
+
+        // $filter = request()->input('filter');
+        // $search = request()->input('search');
+        // //$noResult = false;
        
-        if ($filter == 'opcion1') {
-            $books = Book::where('title', 'like', '%'.$search.'%')->get();
-        } else {
-            $books = Book::all();
-        }
-        $noResult = $books->isEmpty();
-        return view('web.books.index', compact('books', 'noResult'));
+        // if ($filter == 'opcion1') {
+        //     $books = Book::where('title', 'like', '%'.$search.'%')->get();
+            
+        // } else {
+        //     $books = Book::all();
+        // }
+        // $noResult = $books->isEmpty();
+        // return view('web.books.queries', compact('books', 'noResult'));
 
 
 
@@ -29,11 +38,11 @@ class QueryController extends Controller
         //     if ($books->isEmpty()) {
         //         echo 'No hay resultados';
         //     } else {
-        //         return view('web.books.index', compact('books'));
+        //         return view('web.books.queries', compact('books', 'noResult'));
         //     }
         // } else {
         //     $books = Book::all();
-        //     return view('web.books.index', compact('books'));
+        //     return view('web.books.queries', compact('books', 'noResult'));
         // }
 
 
@@ -52,7 +61,7 @@ class QueryController extends Controller
         
        
         
-    }
+    
 
 //     public function whereSimple(){
 
@@ -71,4 +80,4 @@ class QueryController extends Controller
 
 
 
-}
+

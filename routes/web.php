@@ -2,20 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\BookController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\Backoffice\AdminController;
 use App\Http\Controllers\QueryController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // WEB
 
-Route::get('books',[BookController::class, 'index'])->name('web.books.index');
+Route::get('/',[BookController::class, 'index'])->name('web.books.index');
+Route::get('genres/{id}', [GenreController::class, 'byGenre'])->name('web.books.genres');
 Route::get('books/{id}', [BookController::class, 'show']) -> name('web.books.show');
 
 // Queries
-Route::get('where-complejo', [QueryController::class, 'whereComplejo']);
 // Route::get('where-simple', [QueryController::class, 'whereSimple']);
 
 
