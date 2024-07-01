@@ -23,7 +23,7 @@ class BookFactory extends Factory
             'price' => fake()->randomFloat(2, 1, 99999.99),
             'released_date' =>fake()->dateTimeBetween(),
             'genre_id' => rand(1,10),
-            'image' => 'https://loremflickr.com/320/240?random=' .rand(1,50),
+            //'image' => 'https://loremflickr.com/320/240?random=' .rand(1,50),
         ];
     }
 }

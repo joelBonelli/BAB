@@ -1,4 +1,4 @@
-@extends('backoffice.layouts.app');
+@extends('backoffice.layouts.app')
 
 @section('title-head')
     Edicion de libros - Backoffice
@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
 @parent
-<li class="breadcrumb-item"><a href="#">Libros</a></li>
+<li class="breadcrumb-item"><a href="/dashboard">Libros</a></li>
 <li class="breadcrumb-item active" aria-current="page">Editar</li>
 @endsection
 
@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-<form action="/dashboard/{{ $book->id }}" method="POST">
+<form action="/dashboard/{{ $book->id }}" method="POST" enctype="multipart/form-data">
   @csrf
   <div class="form-group">
     <label for="title">Titulo</label>
@@ -40,16 +40,20 @@
     <div class="form-group">
       <label for="genre_id">Genero</label>
       <select class="form-control" name="genre_id" id="genre_id">
-        <option @selected($book->genre_id == 1) value="1">Novela</option>
-        <option @selected($book->genre_id == 2) value="2">Cuentos</option>
-        <option @selected($book->genre_id == 3) value="3">Historia</option>
-        <option @selected($book->genre_id == 4) value="4">Poesia</option>
-        <option @selected($book->genre_id == 5) value="5">Biografia</option>
+        @foreach($genres as $genre)
+        <option value="{{$genre->id}}" {{ $genre->id == $book->genre_id ? 'selected' : '' }}>{{$genre->value}}</option>
+        @endforeach
       </select>
     </div>
     <div class="form-group">
-      <label for="released_date">Imagen</label>
-      <input value="{{ $book->image }} type="text" class="form-control" id="image" name="image">
+
+      <div class="form-group">
+        <label for="image">Imagen</label>
+        @if ($book->image)
+        <img style="max-width: 80px;margin-top: 10px; margin-bottom: 15px;" src="/storage/{{ $book?->image?->src }}" alt="">
+        @endif
+        <input type="file" class="form-control" id="image" name="image">
+      </div>
     </div>
     <button type="submit" class="btn btn-primary mt-2" class="form-control">Guardar</button>
     <a href="/dashboard" class="btn btn-primary mt-2 ml-6" style="margin-left: 20px;">Volver al listado</a>

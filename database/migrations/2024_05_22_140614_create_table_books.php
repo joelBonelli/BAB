@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('released_date')->nullable();
             $table->decimal('price', 8, 2);
-            $table->tinyInteger('genre_id')->unsigned()->index();
-            $table->string('image', 225)->nullable();
+            $table->tinyInteger('genre_id')->unsigned()->nullable()->index();
+            $table->integer('image_id')->nullable();
             $table->timestamps();
         });
     }

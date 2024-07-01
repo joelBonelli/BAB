@@ -1,11 +1,11 @@
-@extends('backoffice.layouts.app');
+@extends('backoffice.layouts.app')
 @section('title-head')
     Listado de libros - Backoffice
 @endsection
 
 @section('breadcrumb')
 @parent
-<li class="breadcrumb-item"><a href="#">Libros</a></li>
+<li class="breadcrumb-item"><a href="/dashboard">Libros</a></li>
 <li class="breadcrumb-item active" aria-current="page">Listado</li>
 @endsection
 
