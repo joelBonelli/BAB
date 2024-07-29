@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequest;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Image;
@@ -24,24 +25,27 @@ class AdminController extends Controller
         return view('backoffice.create', compact('genres'));
     }
 
-    public function store() {
+    public function store(AdminRequest $request) {
 
         $book = new Book;
-
+        $image_id = null;
         // request()->file('image')->getSize();
         // request()->file('image')->getClientOriginalExtension();
         // request()->file('image')->store('books');
         // request()->file('image')->storeAs('books/fotito.jpg');
 
         // Subir imagen y recuperar el src
-        $size = request()->file('image')->getSize();
-        $extension = request()->file('image')->getClientOriginalExtension();
-        $src = request()->file('image')->store('books');
-        $image = new Image();
-        $image->size = $size;
-        $image->extension = $extension;
-        $image->src = $src;
-        $image->save();
+        if (request()->hasFile('image')) {
+            $size = request()->file('image')->getSize();
+            $extension = request()->file('image')->getClientOriginalExtension();
+            $src = request()->file('image')->store('books');
+            $image = new Image();
+            $image->size = $size;
+            $image->extension = $extension;
+            $image->src = $src;
+            $image->save();
+            $image_id = $image->id;
+        } 
         //$image->id;
     
         $book->title = request()->input('title');
@@ -50,7 +54,7 @@ class AdminController extends Controller
         $book->price = request()->input('price');
         $book->released_date = request()->input('released_date');
         $book->genre_id = request()->input('genre_id');
-        $book->image_id = $image->id;
+        $book->image_id = $image_id;
         $book->save();
 
         return redirect('dashboard');

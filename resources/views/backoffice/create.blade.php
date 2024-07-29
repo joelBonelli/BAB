@@ -14,6 +14,17 @@
     Cargar nuevo libro
 @endsection
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 @section('content')
 <form action="/dashboard" method="POST" enctype="multipart/form-data">
   @csrf
