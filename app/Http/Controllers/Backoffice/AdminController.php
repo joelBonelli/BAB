@@ -75,7 +75,7 @@ class AdminController extends Controller
         $image->size = $size;
         $image->extension = $extension;
         $image->src = $src;
-
+        $image->save();
         $book->title = request()->input('title');
         $book->autor = request()->input('autor');
         $book->description = request()->input('description');

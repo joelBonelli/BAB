@@ -51,6 +51,7 @@
         <label for="image">Imagen</label>
         @if ($book->image)
         <img style="max-width: 80px;margin-top: 10px; margin-bottom: 15px;" src="/storage/{{ $book?->image?->src }}" alt="">
+        <p>{{ basename($book->image->src)}} </p>
         @endif
         <input type="file" class="form-control" id="image" name="image">
       </div>

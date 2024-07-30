@@ -14,7 +14,7 @@
 @section('content')
 <div class="container">
     <div class="container mb-0">
-            <h4>Generos</h4>
+            <h4>Géneros</h4>
     </div>
     <div class="container d-flex justify-content-between align-items-center mt-0 mb-4">
 
@@ -27,12 +27,12 @@
     <table class="table table-hover table-bordered my-3" aria-describedby="titulo">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Titulo</th>
+                <th scope="col">Título</th>
                 <th scope="col">Autor</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Descripción</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Año</th>
-                <th scope="col">Genero</th>
+                <th scope="col">Género</th>
                 <th scope="col">Portada</th>
             </tr>
         </thead>
@@ -45,8 +45,11 @@
                 <td> {{ $book->description }}</td>
                 <td>{{ $book->price }}</td> 
                 <td>{{ $book->released_date }}</td> 
-                <td>{{ $book->genre->value }}</td>
-                <td><img src="/storage/{{ $book?->image?->src }}" alt="Portada del libro" class="img-thumbnail" style="max-width: 80px;"></td>
+                <td><a href="/genres/{{ $book->genre->id }}">{{ $book->genre->value}}</a></td>
+                {{-- <td>{{ $book->genre->value }}</td> --}}
+                <td><img src="/storage/{{ $book?->image?->src }}" alt="Portada del librosABATOS" class="img-thumbnail" style="max-width: 80px;"></td>
+               
+
             </tr>
                 @endforeach
         </tbody>

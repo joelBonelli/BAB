@@ -42,7 +42,7 @@ class BookController extends Controller
         }else {
             session(['cart' => [$id]]);
         }
-        return redirect('/'); 
+        return redirect('web/books/checkout'); 
     }
 
     public function remove($id){
